@@ -1,0 +1,18 @@
+name: Dependency review
+
+on: pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      # Fails the pull request if it adds a dependency with a known vulnerability.
+      - uses: actions/dependency-review-action@v4

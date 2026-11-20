@@ -1,0 +1,36 @@
+name: Bug report
+description: Something is broken, or a subnet calculation is wrong
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did it happen?
+      options:
+        - Calculator
+        - Quiz
+        - Visual (odometer)
+        - About page
+        - Build or tooling
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: >
+        If a calculation is wrong, include the address and prefix you entered (for example
+        192.168.1.77/26), what you expected, and what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open the calculator\n2. Enter ...\n3. See ..."
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      placeholder: Firefox on Windows 11
