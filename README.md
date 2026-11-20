@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# Subnetting
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Learn IPv4 subnetting step by step: a calculator that shows its work, a practice quiz, and an
+odometer-style visualizer that makes octet rollover finally click.
 
-Currently, two official plugins are available:
+[![CI](https://github.com/syednoorulhassan001/Subnetting/actions/workflows/ci.yml/badge.svg)](https://github.com/syednoorulhassan001/Subnetting/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> **Status:** early development. The project is being built in small daily steps; see the
+> [roadmap](docs/ROADMAP.md). Nothing is usable yet.
 
-## React Compiler
+## Why this exists
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Subnetting is easy to get lost in. Most tools hand you the answer without showing the math behind
+it. This project started with a CCNA student who kept losing the thread, and it aims to teach the
+reasoning, not just the result. It is free, open source, and runs entirely in your browser.
 
-## Expanding the ESLint configuration
+## Planned features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **About**: a short history of IPv4 addressing and the theory you need (binary, masks, CIDR).
+- **Calculator**: enter an address and prefix, see the network, broadcast, host range and the
+  working behind each value.
+- **Quiz**: endless practice questions (hosts per subnet, network address, and more). Try first,
+  then reveal the answer with the steps.
+- **Visual**: an odometer that shows how octets fill and roll over, for example why the last
+  usable host in `1.0.0.0/8` is `1.255.255.254`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+React, TypeScript, Vite, Vitest. There is no backend: everything runs client side.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting started
+
+Requirements: Node.js 24 (see `.nvmrc`; with [nvm](https://github.com/nvm-sh/nvm) run `nvm use`)
+and npm.
+
+```bash
+git clone https://github.com/syednoorulhassan001/Subnetting.git
+cd Subnetting
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command              | What it does                                               |
+| -------------------- | ---------------------------------------------------------- |
+| `npm run dev`        | Start the dev server                                       |
+| `npm run build`      | Type-check and build for production                        |
+| `npm run preview`    | Preview the production build locally                       |
+| `npm test`           | Run the unit tests once                                    |
+| `npm run test:watch` | Run the tests in watch mode                                |
+| `npm run lint`       | Lint with ESLint                                           |
+| `npm run typecheck`  | Type-check with TypeScript                                 |
+| `npm run format`     | Format all files with Prettier                             |
+| `npm run check`      | Lint, type-check, format check and tests (run before a PR) |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project structure
+
+This is the planned layout and will fill in as the days go by.
+
+```text
+src/
+  lib/subnet/   pure TypeScript subnet math (no React), fully unit tested
+  pages/        About, Calculator, Quiz, Visual
+  components/   shared UI pieces
+docs/           roadmap and project notes
 ```
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first, and follow the
+[Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Security
+
+Found a vulnerability? Please do not open a public issue. See [SECURITY.md](SECURITY.md).
+
+## License
+
+[MIT](LICENSE)
