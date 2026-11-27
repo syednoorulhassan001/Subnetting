@@ -15,4 +15,4 @@ jobs:
           persist-credentials: false
 
       # Fails the pull request if it adds a dependency with a known vulnerability.
-      - uses: actions/dependency-review-action@v4
+      - uses: actions/dependency-review-action@v5
